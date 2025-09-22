@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-
-# Lista para armazenar os dados em memória
 dados_salvos = []
 
 @app.route("/", methods=["GET", "POST"])
@@ -10,23 +8,14 @@ def index():
     if request.method == "POST":
         campo_a = request.form.get("campo_a")
         campo_b = request.form.get("campo_b")
-
-        # Armazena os dados na lista
-        dados_salvos.append({
-            "campo_a": campo_a,
-            "campo_b": campo_b
-        })
-
-        # Exibe nos logs (Railway verá isso!)
-        print(f"[NOVO ENVIO] Campo A: {campo_a} | Campo B: {campo_b}")
-
+        dados_salvos.append({"campo_a": campo_a, "campo_b": campo_b})
+        print(f"Novo dado: {campo_a}, {campo_b}")
         return "Dados recebidos com sucesso!"
-
-    # Formulário simples
+    
     return '''
         <form method="POST">
-            Campo A: <input type="text" name="campo_a"><br>
-            Campo B: <input type="text" name="campo_b"><br>
+            Campo A: <input name="campo_a"><br>
+            Campo B: <input name="campo_b"><br>
             <input type="submit" value="Enviar">
         </form>
     '''
