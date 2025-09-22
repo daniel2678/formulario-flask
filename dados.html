@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dados Recebidos</title>
+</head>
+<body>
+    <h1>Dados Recebidos</h1>
+    <ul>
+        {% for item in dados %}
+            <li>{{ item.nome }} - {{ item.email }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
