@@ -1,9 +1,9 @@
-from flask import Flask, request, redirect, render_template
 import os
+from flask import Flask, request, redirect, render_template
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def index():
     return render_template("index.html")
 
@@ -17,3 +17,8 @@ def salvar():
             f.write(f"{campo_a},{campo_b}\n")
 
     return redirect("/")
+
+if __name__ == "__main__":
+    # 🚨 use a porta do sistema, pois o Railway define automaticamente
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
